@@ -38,7 +38,7 @@ func list_steam_lobbies():
 	%NetworkManager.list_lobbies()
 
 func join_lobby(lobby_id = 0):
-	print("Joining lobby %s" % lobby_id)
+	print("Join lobby %s" % lobby_id)
 	_remove_single_player()
 	%MultiplayerHUD.hide()
 	%SteamHUD.hide()
