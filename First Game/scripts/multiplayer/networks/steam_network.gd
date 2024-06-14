@@ -1,5 +1,6 @@
 extends Node
 
+var game_scene = preload("res://scenes/game.tscn")
 var multiplayer_scene = preload("res://scenes/multiplayer_player.tscn")
 var multiplayer_peer: SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var _players_spawn_node
@@ -15,11 +16,16 @@ func  _ready():
 func become_host():
 	print("Starting host!")
 	
-	multiplayer.peer_connected.connect(_add_player_to_game)
+	multiplayer.peer_connected.connect(_player_joined)#_add_player_to_game)
 	multiplayer.peer_disconnected.connect(_del_player)
 	
 	Steam.lobby_joined.connect(_on_lobby_joined.bind())
 	Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, SteamManager.lobby_max_members)
+
+func add_game_to_world():
+	var game_scene = game_scene.instantiate()
+	var world = get_tree().current_scene.get_node("World")
+	world.add_child(game_scene)
 	
 func join_as_client(lobby_id):
 	print("Joining lobby %s" % lobby_id)
@@ -47,8 +53,9 @@ func _create_host():
 	if error == OK:
 		multiplayer.set_multiplayer_peer(multiplayer_peer)
 		
-		if not OS.has_feature("dedicated_server"):
-			_add_player_to_game(1)
+		add_game_to_world()
+		#if not OS.has_feature("dedicated_server"):
+			#_add_player_to_game(1)
 	else:
 		print("error creating host: %s" % str(error))
 
@@ -90,6 +97,14 @@ func list_lobbies():
 	# Otherwise, it may not show up in the lobby list of your clients
 	Steam.addRequestLobbyListStringFilter("name", LOBBY_NAME, Steam.LOBBY_COMPARISON_EQUAL)
 	Steam.requestLobbyList()
+
+func _player_joined(id: int):
+	print("player joined %s" % id)
+	#TODO: this should do any pre-game setup
+	# This was used instead of add_player_to_game signal
+	_add_player_to_game(id)
+	_add_player_to_game(1) # also add host
+
 
 func _add_player_to_game(id: int):
 	print("Player %s joined the game!" % id)

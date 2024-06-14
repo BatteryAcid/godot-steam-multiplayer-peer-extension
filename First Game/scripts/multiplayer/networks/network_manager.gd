@@ -28,8 +28,10 @@ func _build_multiplayer_network():
 func _set_active_network(active_network_scene):
 	var network_scene_initialized = active_network_scene.instantiate()
 	active_network = network_scene_initialized
-	active_network._players_spawn_node = _players_spawn_node
-	add_child(active_network)
+	#active_network._players_spawn_node = _players_spawn_node
+	
+	var active_network_node = get_tree().current_scene.get_node("ActiveNetwork")
+	active_network_node.add_child(active_network)
 
 func become_host(is_dedicated_server = false):
 	_build_multiplayer_network()

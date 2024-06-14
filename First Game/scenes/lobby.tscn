@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7gy5bbt5ohdo"]
+
+[ext_resource type="Script" path="res://scripts/lobby.gd" id="1_isse3"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/fonts/PixelOperator8.ttf" id="1_upml2"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_isse3")
+
+[node name="MultiplayerMenu" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerMenu"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 50.0
+offset_right = 404.0
+offset_bottom = 178.0
+
+[node name="HostGame" type="Button" parent="MultiplayerMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_upml2")
+theme_override_font_sizes/font_size = 32
+text = "Host Game"
+
+[node name="JoinAsClient" type="Button" parent="MultiplayerMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_upml2")
+theme_override_font_sizes/font_size = 32
+text = "Join as Client"
+
+[node name="UseSteam" type="Button" parent="MultiplayerMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_upml2")
+theme_override_font_sizes/font_size = 32
+text = "Use Steam"
+
+[node name="SteamMenu" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SteamMenu"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 188.0
+offset_right = 404.0
+offset_bottom = 316.0
+
+[node name="HostP2P" type="Button" parent="SteamMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_upml2")
+theme_override_font_sizes/font_size = 32
+text = "Host P2P"
+
+[node name="ListLobbies" type="Button" parent="SteamMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_upml2")
+theme_override_font_sizes/font_size = 32
+text = "List Lobbies"
+
+[node name="Lobbies" type="ScrollContainer" parent="SteamMenu"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 286.0
+offset_right = 404.0
+offset_bottom = 414.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SteamMenu/Lobbies"]
+layout_mode = 2
+
+[connection signal="pressed" from="MultiplayerMenu/VBoxContainer/HostGame" to="." method="become_host"]
+[connection signal="pressed" from="MultiplayerMenu/VBoxContainer/JoinAsClient" to="." method="join_as_client"]
+[connection signal="pressed" from="MultiplayerMenu/VBoxContainer/UseSteam" to="." method="use_steam"]
+[connection signal="pressed" from="SteamMenu/VBoxContainer/HostP2P" to="." method="become_host"]
+[connection signal="pressed" from="SteamMenu/VBoxContainer/ListLobbies" to="." method="list_steam_lobbies"]

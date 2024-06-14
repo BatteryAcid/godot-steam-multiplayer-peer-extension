@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://7rj8kf5im4uj"]
+
+[ext_resource type="PackedScene" uid="uid://b7gy5bbt5ohdo" path="res://scenes/lobby.tscn" id="1_s6f3w"]
+
+[node name="Main" type="Node"]
+
+[node name="Lobby" parent="." instance=ExtResource("1_s6f3w")]
+
+[node name="ActiveNetwork" type="Node" parent="."]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="WorldSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/game.tscn")
+spawn_path = NodePath("../World")
+spawn_limit = 1
