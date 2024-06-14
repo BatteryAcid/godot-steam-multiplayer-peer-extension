@@ -8,6 +8,9 @@ var multiplayer_scene = preload("res://scenes/multiplayer_player.tscn")
 var multiplayer_peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 var _players_spawn_node
 
+var _player_ids_in_game = []
+
+
 func become_host():
 	print("Starting host!")
 	
@@ -19,6 +22,9 @@ func become_host():
 	multiplayer.peer_disconnected.connect(_del_player)
 
 	add_game_to_world()
+	
+	# Manually add host
+	_player_ids_in_game.append(1)
 	# TODO: delay this until game start
 	#if not OS.has_feature("dedicated_server"):
 		#_add_player_to_game(1)
@@ -36,19 +42,35 @@ func join_as_client(lobby_id):
 
 func _player_joined(id: int):
 	print("player joined %s" % id)
+	_player_ids_in_game.append(id)
+	#dummy.rpc()
 	#TODO: this should do any pre-game setup
 	# This was used instead of add_player_to_game signal
-	_add_player_to_game(id)
-	_add_player_to_game(1) # also add host
+	
+	# TODO show button, that on pressed does the following
+	
+	#_add_player_to_game(1) # also add host
+	#await get_tree().create_timer(60).timeout
+	#_add_player_to_game(id)
+
+#@rpc("call_local")
+#func dummy():
+	#print("dummy rpc: ")
+
+func start_game():
+	for player_id in _player_ids_in_game:
+		_add_player_to_game(player_id)
 
 func _add_player_to_game(id: int):
 	print("Player %s joined the game!" % id)
 	
-	var player_to_add = multiplayer_scene.instantiate()
-	player_to_add.player_id = id
+	#var player_to_add = multiplayer_scene.instantiate()
+	var player_scene = load("res://scenes/multiplayer_player.tscn")
+	var player_to_add = player_scene.instantiate()
+	#player_to_add.player_id = id
 	player_to_add.name = str(id)
 	
-	await get_tree().create_timer(1).timeout
+	#await get_tree().create_timer(1).timeout
 	_players_spawn_node = get_tree().current_scene.get_node("World/Game/Players")
 	_players_spawn_node.add_child(player_to_add, true)
 	

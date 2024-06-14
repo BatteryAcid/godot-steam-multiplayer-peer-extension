@@ -1,9 +1,9 @@
 extends MultiplayerSynchronizer
 
-@onready var player = $".."
+#@onready var player = $".."
 
-var input_direction
-var username = ""
+@export var input_direction = Vector2()
+#var username = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +14,7 @@ func _ready():
 	
 	input_direction = Input.get_axis("move_left", "move_right")
 	
-	username = SteamManager.steam_username
+	#username = SteamManager.steam_username
 
 func _physics_process(delta):
 	input_direction = Input.get_axis("move_left", "move_right")
@@ -27,4 +27,5 @@ func _process(delta):
 @rpc("call_local")
 func jump():
 	if multiplayer.is_server():
-		player.do_jump = true
+		print("jump placeholder")
+		#player.do_jump = true

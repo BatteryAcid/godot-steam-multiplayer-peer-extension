@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/fonts/PixelOperator8.ttf" id="1_upml2"]
 
 [node name="Lobby" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,8 +86,25 @@ offset_bottom = 414.0
 [node name="VBoxContainer" type="VBoxContainer" parent="SteamMenu/Lobbies"]
 layout_mode = 2
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartGame" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_upml2")
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
 [connection signal="pressed" from="MultiplayerMenu/VBoxContainer/HostGame" to="." method="become_host"]
 [connection signal="pressed" from="MultiplayerMenu/VBoxContainer/JoinAsClient" to="." method="join_as_client"]
 [connection signal="pressed" from="MultiplayerMenu/VBoxContainer/UseSteam" to="." method="use_steam"]
 [connection signal="pressed" from="SteamMenu/VBoxContainer/HostP2P" to="." method="become_host"]
 [connection signal="pressed" from="SteamMenu/VBoxContainer/ListLobbies" to="." method="list_steam_lobbies"]
+[connection signal="pressed" from="Panel/VBoxContainer/StartGame" to="." method="on_start"]

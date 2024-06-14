@@ -5,32 +5,23 @@
 [ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_input.gd" id="2_75sn2"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bcfu3"]
-properties/0/path = NodePath(".:player_id")
+properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:position")
+properties/1/path = NodePath(".:do_jump")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath(".:do_jump")
+properties/2/path = NodePath(".:_is_on_floor")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath(".:_is_on_floor")
+properties/3/path = NodePath(".:direction")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath(".:direction")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath(".:username")
-properties/5/spawn = true
-properties/5/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kgm8b"]
 properties/0/path = NodePath("InputSynchronizer:input_direction")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("InputSynchronizer:username")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq0sc"]
 atlas = ExtResource("2_5qtv2")

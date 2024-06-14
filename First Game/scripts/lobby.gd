@@ -38,6 +38,7 @@ func join_lobby(lobby_id = 0):
 	#_remove_single_player()
 	%MultiplayerMenu.hide()
 	%SteamMenu.hide()
+	$Panel.hide()
 	NetworkManager.join_as_client(lobby_id)
 	#%NetworkManager.join_as_client(lobby_id)
 
@@ -67,3 +68,9 @@ func _on_lobby_match_list(lobbies: Array):
 			
 			$SteamMenu/Lobbies/VBoxContainer.add_child(lobby_button)
 			
+func on_start():
+	print("on start pressed")
+	NetworkManager.start_game()
+	$Panel.hide()
+
+	

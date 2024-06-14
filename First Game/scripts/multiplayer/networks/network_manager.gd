@@ -45,3 +45,6 @@ func join_as_client(lobby_id = 0):
 func list_lobbies():
 	_build_multiplayer_network()
 	active_network.list_lobbies()
+
+func start_game():
+	active_network.start_game()

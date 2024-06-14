@@ -113,6 +113,8 @@ func _add_player_to_game(id: int):
 	player_to_add.player_id = id
 	player_to_add.name = str(id)
 	
+	# TODO: rethink how we get this
+	_players_spawn_node = get_tree().current_scene.get_node("World/Game/Players")
 	_players_spawn_node.add_child(player_to_add, true)
 	
 func _del_player(id: int):

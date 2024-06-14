@@ -684,11 +684,6 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="SteamHUD/Panel/Lobbies"]
 layout_mode = 2
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/multiplayer_player.tscn")
-spawn_path = NodePath("../Players")
-spawn_limit = 10
-
 [node name="Players" type="Node2D" parent="."]
 
 [node name="FinishLine" type="Area2D" parent="."]
@@ -698,6 +693,11 @@ script = ExtResource("10_nyxvp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine"]
 position = Vector2(622.5, -136.5)
 shape = SubResource("RectangleShape2D_2186x")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/multiplayer_player.tscn")
+spawn_path = NodePath("../Players")
+spawn_limit = 10
 
 [connection signal="pressed" from="MultiplayerHUD/Panel/VBoxContainer/HostGame" to="GameManager" method="become_host"]
 [connection signal="pressed" from="MultiplayerHUD/Panel/VBoxContainer/JoinAsClient" to="GameManager" method="join_as_client"]
