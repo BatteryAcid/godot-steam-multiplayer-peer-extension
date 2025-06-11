@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgv5v2fxqlswe"]
 
 [ext_resource type="Texture2D" uid="uid://cxuqjimd7csiq" path="res://assets/sprites/platforms.png" id="1_7q5sl"]
-[ext_resource type="Script" path="res://scripts/platform.gd" id="1_bwx77"]
+[ext_resource type="Script" uid="uid://boc2urnx10jbh" path="res://scripts/platform.gd" id="1_bwx77"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ijbck"]
 properties/0/path = NodePath(".:position")

@@ -42,7 +42,7 @@ func _on_lobby_created(connect: int, lobby_id):
 func _create_host():
 	print("Create Host")
 	
-	var error = multiplayer_peer.create_host(0, [])
+	var error = multiplayer_peer.create_host(0)
 	
 	if error == OK:
 		multiplayer.set_multiplayer_peer(multiplayer_peer)
@@ -53,7 +53,7 @@ func _create_host():
 		print("error creating host: %s" % str(error))
 
 func _on_lobby_joined(lobby: int, permissions: int, locked: bool, response: int):
-	print("On lobby joined")
+	print("On lobby joined: %s" % response)
 	
 	if response == 1:
 		var id = Steam.getLobbyOwner(lobby)
@@ -77,7 +77,7 @@ func _on_lobby_joined(lobby: int, permissions: int, locked: bool, response: int)
 		print(FAIL_REASON)
 	
 func connect_socket(steam_id: int):
-	var error = multiplayer_peer.create_client(steam_id, 0, [])
+	var error = multiplayer_peer.create_client(steam_id, 0)
 	if error == OK:
 		print("Connecting peer to host...")
 		multiplayer.set_multiplayer_peer(multiplayer_peer)

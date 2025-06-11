@@ -1,8 +1,8 @@
 [gd_scene load_steps=29 format=3 uid="uid://d226nufmlvivj"]
 
-[ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_controller.gd" id="1_ij7lf"]
+[ext_resource type="Script" uid="uid://bht86fnj5lmen" path="res://scripts/multiplayer/multiplayer_controller.gd" id="1_ij7lf"]
 [ext_resource type="Texture2D" uid="uid://b8cmjj8vq3r8d" path="res://assets/sprites/knight.png" id="2_5qtv2"]
-[ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_input.gd" id="2_75sn2"]
+[ext_resource type="Script" uid="uid://bu1v15un7w78p" path="res://scripts/multiplayer/multiplayer_input.gd" id="2_75sn2"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bcfu3"]
 properties/0/path = NodePath(".:player_id")
